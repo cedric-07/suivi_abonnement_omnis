@@ -1,0 +1,440 @@
+﻿
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/logo_omnis.png">
+    <title>
+        Suivi Abonnements OMNIS
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <!-- Nucleo Icons -->
+    <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
+    <!-- Nepcha Analytics (nepcha.com) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+
+
+    <style>
+        /* Style de base pour les éléments de menu */
+        /* Style de base pour les éléments de menu */
+        .nav-item .nav-link {
+            font-family: 'Montserrat', sans-serif !important; /* Applique la police Montserrat */
+            color: black !important; /* Définit la couleur du texte */
+            padding: 12px 15px !important; /* Espace autour du texte */
+            border-radius: 8px; /* Ajoute un arrondi aux coins */
+            transition: all 0.3s ease-in-out !important; /* Transition fluide pour tous les effets */
+            display: flex; /* Utilisation de flexbox pour l'alignement des éléments */
+            align-items: center; /* Centrer le texte et l'icône */
+            position: relative; /* Nécessaire pour certains effets */
+        }
+
+            /* Effet de survol sans changer de fond, mais ajout d'un soulignement animé */
+        .nav-item .nav-link:hover {
+            color: white !important; /* Changer la couleur du texte au survol */
+            transform: translateY(-3px) !important; /* Translation vers le haut pour un effet de mouvement */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important; /* Ajout d'une ombre subtile au survol */
+            background-color: #2c3e50 !important;
+            font-weight: bold; !important; /* Met le texte en gras au survol */
+            transition: transform 0.1s ease, color 0.1s ease, box-shadow 0.1s ease !important; /* Transition fluide pour tous les changements */
+        }
+
+            /* Ajout d'un soulignement animé au survol */
+        .nav-item .nav-link::after {
+            content: ''; /* Nécessaire pour générer un pseudo-élément */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            transition: width 0.3s ease-in-out !important; /* Transition fluide */
+        }
+
+            /* Soulignement étendu au survol */
+        .nav-item .nav-link:hover::after {
+            width: 100%; /* Étend la ligne sous le texte */
+        }
+
+            /* Agrandissement de l'icône au survol */
+        .nav-item .nav-link:hover .icon {
+            transform: scale(1.2) !important; /* Agrandissement de l'icône */
+            background-color: #2c3e50 !important;
+            transition: transform 0.3s ease-in-out !important; /* Transition fluide pour l'agrandissement */
+        }
+
+                /* Effet d'agrandissement spécifique pour l'icône SVG */
+        .nav-item .nav-link:hover .icon svg {
+            transform: scale(1.3) !important; /* Augmente légèrement la taille de l'icône */
+            transition: transform 0.3s ease !important; /* Transition fluide pour l'agrandissement de l'icône SVG */
+        }
+
+            /* Effet pour l'élément actif */
+        .nav-item .nav-link.active {
+            color: white !important; /* Couleur du texte blanc pour l'élément actif */
+            font-weight: bold; /* Met le texte en gras pour l'élément actif */
+        }
+
+            /* Effet de mise en évidence de l'icône au survol */
+        .nav-item .nav-link:hover .icon svg {
+            fill: #fff !important; /* Remplissage blanc pour l'icône SVG lors du survol */
+            transition: fill 0.3s ease !important; /* Transition fluide pour la couleur de l'icône */
+        }
+
+        .main-content
+        {
+            font-family: 'Montserrat', Medium !important; /* Applique la police Montserrat */
+        }
+        
+       .logo-custom {
+            max-width: 90px !important; /* Ajuste selon ton besoin */
+            max-height: 90px !important;
+            margin-left: 30px !important;
+        }
+
+        
+            
+        </style>
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3" style="background-color: white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <i class="fas fa-times cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand" href="https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html" target="_blank">
+                <img src="../assets/img/logo_omnis.png" class="img-fluid logo-custom" alt="main_logo">
+            </a>
+        
+        <hr class="horizontal dark mt-0">
+        <div class="collapse navbar-collapse  w-auto " >
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link  " href="@Url.Action("Index", "Abonnements")">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                                    <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Tableau de bord</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  " href="@Url.Action("AbonnementPage", "Abonnements")">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                                <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Abonnements</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  " href="@Url.Action("create", "Abonnements")">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+                                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Form abonnement</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link  " href="@Url.Action("create", "Fournisseurs")">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+                                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Fournisseur</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="@Url.Action("HistoriquePage", "Abonnements")">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                                <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z"/>
+                                <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z"/>
+                                <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Historique</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </aside>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mt-4" id="navbarBlur" navbar-scroll="true">
+            <div class="container-fluid py-1 px-3">  
+                <div class="container-fluid" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    </div>
+                    <ul class="navbar-nav justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="@Url.Action("Index", "Message")" class="nav-link text-body p-0">
+                                <i class="fa fa-envelope cursor-pointer"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-bell cursor-pointer"></i>
+                                @if(@ViewBag.NbrNotifications > 0)
+                                {
+                                    <span class="badge badge-danger position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle">
+                                        @ViewBag.NbrNotifications
+                                    </span>
+                                }       
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton" style="border-radius: 10px; background: #fff; box-shadow: 0 6px 8px rgba(11, 33, 226, 0.1); font-size: 0.875rem; width: 250px;">
+                                <div class="text-center pb-2" style="background-color: #1E2A3A; border-radius: 10px 10px 0 0; padding: 10px;">
+                                    <h5 class="font-weight-bold text-white mb-1" style="font-size: 1rem;">Notifications</h5>
+                                </div>
+
+                                @if (@ViewBag.NbrNotifications > 0 && @ViewBag.Notifications != null)
+                                {
+                                    <div class="scrollable-notifications" style="max-height: 250px; overflow-y: auto;">
+                                        @foreach (var notification in @ViewBag.Notifications)
+                                        {
+                                            <li class="mb-3 notification-item" data-notification-id="@notification.Id" data-createdat="@notification.CreatedAt" style="list-style: none; padding: 0;">
+                                                <a href="#" class="dropdown-item p-2 bg-transparent shadow-none rounded-2 text-decoration-none" style="border-left: none; transition: all 0.3s ease; padding-left: 10px; padding-right: 10px; cursor: pointer;" onclick="markAsRead(@notification.Id)">
+                                                    <div class="d-flex py-1">
+                                                        @if(notification.Status == "non lu")
+                                                        {
+                                                            <div class="d-flex align-items-center me-2">
+                                                                <i class="fa fa-bell text-light" style="font-size: 18px; border-radius: 50%; background-color: #d81616; padding: 6px;"></i>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="d-flex align-items-center me-2">
+                                                                <i class="fa fa-bell text-light" style="font-size: 18px; border-radius: 50%; background-color: #000000; padding: 6px;"></i>
+                                                            </div>
+                                                        }
+                                                        <div class="d-flex flex-column justify-content-center" style="width: 100%; word-wrap: break-word;">
+                                                            @if(notification.Status == "lu")
+                                                            {
+                                                                @if(notification.Type == "alert")
+                                                                {
+                                                                    <!-- Titre avec coche pleine pour notification lue -->
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <h6 class="text-sm font-weight-bold mb-1" style="margin-bottom: 5px; white-space: normal; overflow: visible; text-overflow: clip;">
+                                                                            @notification.Type
+                                                                        </h6>
+                                                                        <i class="fa fa-circle text-muted" style="font-size: 18px; cursor: pointer;" onclick="markAsRead(@notification.Id)"></i>
+                                                                    </div>
+                                                                    <p class="text-xs mb-2" style="font-size: 0.75rem; color: #000000; white-space: normal; overflow: visible; text-overflow: clip;">
+                                                                        @notification.Message
+                                                                    </p>
+                                                                    <p class="text-xs text-muted mb-0" style="font-size: 0.65rem; color: #000000;">
+                                                                        <i class="fa fa-clock me-1"></i>
+                                                                        <span>@notification.CreatedAt.ToString("dd MMM yyyy")</span>
+                                                                    </p>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <!-- Titre avec coche pleine pour notification lue -->
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <h6 class="text-sm font-weight-bold mb-1" style="margin-bottom: 5px; white-space: normal; overflow: visible; text-overflow: clip; color: #000000;">
+                                                                            @notification.Type
+                                                                        </h6>
+                                                                        <i class="fa fa-circle text-muted" style="font-size: 18px; cursor: pointer;" onclick="markAsRead(@notification.Id)"></i>
+                                                                    </div>
+                                                                    <p class="text-xs mb-2 text-muted" style="font-size: 0.75rem;  white-space: normal; overflow: visible; text-overflow: clip;">
+                                                                        @notification.Message
+                                                                    </p>
+                                                                    <p class="text-xs text-muted mb-0" style="font-size: 0.65rem;">
+                                                                        <i class="fa fa-clock me-1"></i>
+                                                                        <span>@notification.CreatedAt.ToString("dd MMM yyyy")</span>
+                                                                    </p>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @if(notification.Type == "alert")
+                                                                {
+                                                                    <!-- Titre avec coche vide pour notification non lue -->
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <h6 class="text-sm font-weight-bold mb-1" style="margin-bottom: 5px; white-space: normal; overflow: visible; text-overflow: clip; color: #d81616;">
+                                                                            @notification.Type
+                                                                        </h6>
+                                                                        <i class="fa fa-circle-thin text-muted" style="font-size: 18px; cursor: pointer;" onclick="markAsRead(@notification.Id)"></i>
+                                                                    </div>
+                                                                    <p class="text-xs mb-2" style="font-size: 0.75rem; color: #000000; white-space: normal; overflow: visible; text-overflow: clip;">
+                                                                        @notification.Message
+                                                                    </p>
+                                                                    <p class="text-xs text-muted mb-0" style="font-size: 0.65rem; color: #000000;">
+                                                                        <i class="fa fa-clock me-1"></i>
+                                                                        <span>@notification.CreatedAt.ToString("dd MMM yyyy")</span>
+                                                                    </p>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <!-- Titre avec coche vide pour notification non lue -->
+                                                                    <div class="d-flex justify-content-between align-items-center">
+                                                                        <h6 class="text-sm font-weight-bold mb-1" style="margin-bottom: 5px; white-space: normal; overflow: visible; text-overflow: clip; color: #d81616;">
+                                                                            @notification.Type
+                                                                        </h6>
+                                                                        <i class="fa fa-circle-thin text-muted" style="font-size: 18px; cursor: pointer;" onclick="markAsRead(@notification.Id)"></i>
+                                                                    </div>
+                                                                    <p class="text-xs mb-2" style="font-size: 0.75rem; color: #000000; white-space: normal; overflow: visible; text-overflow: clip;">
+                                                                        @notification.Message
+                                                                    </p>
+                                                                    <p class="text-xs text-muted mb-0" style="font-size: 0.65rem; color: #000000;">
+                                                                        <i class="fa fa-clock me-1"></i>
+                                                                        <span>@notification.CreatedAt.ToString("dd MMM yyyy")</span>
+                                                                    </p>
+                                                                }                                                                  
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <li class="mb-2">
+                                        <p class="text-xs text-center text-secondary">Aucune notification.</p>
+                                    </li>
+                                }
+                            </ul>
+
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="#logoutModal" data-bs-toggle="modal" class="nav-link text-body font-weight-bold px-0">
+                                <i class="fa fa-sign-out-alt me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Déconnexion</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0">
+                                <i class="fixed-plugin-button-nav cursor-pointer"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- End Navbar -->
+        <div class="container-fluid py-4">
+            
+            <div class="main-content ">
+                @RenderBody()
+                @RenderSection("Scripts", required: false)
+            </div>
+
+            <!--Modal de déconnexion-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirmation de Déconnexion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Êtes-vous sûr de vouloir vous déconnecter?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a href="@Url.Action("Logout", "Authentification")" class="btn btn-danger">Déconnexion</a>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--End Modal de déconnexion-->
+
+            <footer class="footer " style=" color:rgba(0, 0, 0, 0.1); margin-top: 250px;">
+                <div class="container text-center">
+                    <p class="mb-0">OMNIS Madagascar © 2025</p>
+                    <p class="mb-0">Tous droits réservés</p>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+
+        function markAsRead(notificationId) {
+            $.ajax({
+                url: '@Url.Action("MarkNotificationAsRead", "Notification")',
+                type: 'POST',
+                data: { notificationId: notificationId },
+                success: function (response) {
+                    if (response.success) {
+                        // Si la notification est marquée comme lue, on peut retirer l'élément ou changer son apparence
+                        $('li[data-notification-id="' + notificationId + '"]').fadeOut();
+                        // Recharger la page après la mise à jour
+                        location.reload();
+                    } else {
+                        alert("Erreur lors de la mise à jour de la notification.");
+                    }
+                },
+                error: function () {
+                    alert("Erreur de communication avec le serveur.");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            var notifications = $(".notification-item").get();
+            notifications.sort(function (a, b) {
+                var dateA = new Date($(a).data('createdat'));
+                var dateB = new Date($(b).data('createdat'));
+                return dateB - dateA;  // Tri décroissant : le plus récent en haut
+            });
+            $(".scrollable-notifications").html(notifications);  // Réorganiser les éléments
+        });
+        
+
+    </script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+    <!-- Inclure jQuery avant ton script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+
+</html>

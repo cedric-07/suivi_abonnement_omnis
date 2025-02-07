@@ -1,0 +1,179 @@
+@model suivi_abonnement.Models.Fournisseur
+@{
+    ViewData["Title"] = "Ajout d'un fournisseur";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container-fluid  fade-in visible">
+    <div class="row align-items-center">
+        <div class="col">
+            <nav class="navbar navbar-main navbar-expand-lg px-0 shadow-none border-radius-xl " id="navbarBlur" navbar-scroll="true">
+                <div class="-am-pm-container-fluid  d-flex">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6">
+                            <li class="breadcrumb-item text-sm"><a class=" text-dark" href="javascript:;"><i class="bi bi-house-door-fill me-1"></i>Pages</a></li>
+                            <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><i class="bi bi-folder-fill me-1"></i>Formulaire de fournisseur</li>
+                        </ol>
+                        <h6 class="font-weight-bolder">Formulaire de fournisseur</h6>
+                    </nav>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="d-flex justify-content-start mb-4">
+        <a href="@Url.Action("Index", "Fournisseurs")" class="btn-retour btn-animate" style="font-size: 15px;">
+            <i class="bi bi-arrow-left-circle me-2 " style="font-size: 15px;"></i>Retourner vers la liste
+        </a>
+    </div>
+    
+
+
+    <!-- Card pour le formulaire -->
+    <div class="card shadow-lg">
+        <div class="card-header text-white" style="background-color: #0d2d5a;">
+            <h5 class="title-card mb-0">Nouvel Fournisseur</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-action="Create" class="needs-validation" novalidate>
+                <!-- Informations générales -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="Nom" class="form-label fw-bold">Nom du Fournisseur</label>
+                        <input type="text" class="form-control input-custom" id="Nom" name="Nom" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Email" class="form-label fw-bold">Email</label>
+                        <input type="email" class="form-control input-custom" id="Email" name="Email" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="Telephone" class="form-label fw-bold">Téléphone</label>
+                        <input type="tel" class="form-control input-custom" id="Telephone" name="Telephone" required />
+                    </div>
+                </div>
+
+                <!-- Boutons d'action -->
+                <div class="text-start mt-4">
+                    <button type="submit" class="btn text-uppercase fw-bold" style="font-size: 12px; background-color: #3cb80b; color: white;">Enregistrer</button>
+                    <button type="button" class="btn text-uppercase fw-bold" style="font-size: 12px; background-color: #0d2d5a; color: white;" data-bs-toggle="modal" data-bs-target="#categoryModal">
+                        <i class="fas fa-plus" style="color: white;"></i> Nouveau categorie
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour ajouter une catégorie -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0d2d5a;">
+                <h5 class="modal-title" id="categoryModalLabel" style=" color: white;">Nouveau categorie</h5>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-action="Create" asp-controller="Categories" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="CategoryName" class="form-label">Nom de nouvau catégorie</label>
+                        <input type="text" class="form-control input-custom" id="CategoryName" name="Nom" required />
+                    </div>
+                    <div class="d-flex justify-content-start gap-3 mt-3">
+                        <button type="submit" class="btn" style="background-color: #0d2d5a; color: white; padding: 6px 15px; font-size: 13px; border-radius: 5px;">
+                            ENREGISTRER
+                        </button>
+                        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #244c83; color: white; padding: 6px 15px; font-size: 13px; border-radius: 5px;">
+                            ANNULER
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Styles et scripts -->
+<style>
+    .input-custom {
+        border: 2px solid #ced4da;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 14px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .input-custom:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+        outline: none;
+    }
+
+    .form-label {
+        color: #495057;
+        font-weight: 600;
+    }
+
+    .btn-retour {
+        background-color: lightsteelblue;
+        color: darkblue;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .btn-retour:hover {
+            background-color: #0d2d5a;
+            color: white;
+        }
+
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1s, transform 1s;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .card-header {
+        background-color: #0d2d5a;
+    }
+
+    .card-header h5 {
+        color: white;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+    .title-header{
+        font-size: 1.1em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #0d2d5a;
+
+    }
+    .title-card{
+        font-size: 1.1em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #0d2d5a;
+    }
+    
+    
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ajouter la classe "visible" pour afficher avec l'animation fade-in
+        document.querySelector('.fade-in').classList.add('visible');
+    });
+</script>
